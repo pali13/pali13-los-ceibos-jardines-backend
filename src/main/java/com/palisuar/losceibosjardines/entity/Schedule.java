@@ -17,28 +17,19 @@ import lombok.Data;
 @Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Pay {
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false)
-    private String amount;
+    @Column
+    private LocalDate day;
 
-    @Column(nullable = false)
-    private LocalDate payDate;
-
-    @Column(nullable = false)
-    private String status;
+    @Column
+    private String time;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    @JsonBackReference("client-pays") // Referencia inversa para "client-pays"
-    private Client client;
-
-    @ManyToOne
-    @JoinColumn(name = "park_id")
-    @JsonBackReference("park-pays") // Referencia inversa para "park-pays"
+    @JoinColumn(name = "park_id", nullable = false)
+    @JsonBackReference(value = "park-schedule")
     private Park park;
-
 }
