@@ -74,7 +74,6 @@ public class PayController {
     @CrossOrigin(origins = "http://localhost:8081")
     @PutMapping("/{id}")
     public ResponseEntity<?> updatePay(@PathVariable Long id, @RequestBody PayStatusUpdateDTO updatePayStatus) {
-        System.out.println("Update: " + updatePayStatus.getStatus());
         try {
             // Buscar el pago existente
             Optional<Pay> optionalPay = payService.getPayById(id);
